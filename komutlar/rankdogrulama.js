@@ -33,7 +33,7 @@ exports.run = function(client,message,args) {
                 "fields": [
                   {
                     "name": name.replace(/\"/g, ""),
-                    "value": "Sınırsız katılım linki : https://discord.gg/VGWFZUe"
+                    "value": "ApexTR Pro Tracker"
                   },
                   {
                     "name": "Level",
@@ -63,10 +63,10 @@ exports.run = function(client,message,args) {
             setTimeout( () => {
               switch(true)
               {
-                case rankSiralama < 100:
+                case rankSiralama > 0 && rankSiralama < 100:
                   message.member.addRole('660530174030250091');
                   break;
-                case rankSiralama < 500:
+                case rankSiralama > 100 && rankSiralama < 500:
                   message.member.addRole('661247531690491904');
                   break;
                 case score < 10000:
