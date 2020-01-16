@@ -22,7 +22,9 @@ exports.run = function(client,message,args) {
             var dat = JSON.parse(data);
             var name = JSON.stringify(dat["data"]["platformInfo"]["platformUserId"]);
             var score = JSON.stringify(dat["data"]["segments"][0]["stats"]["rankScore"]["value"]);
+            var kills = JSON.stringify(dat["data"]["segments"][0]["stats"]["kills"]["value"]);
             var level = JSON.stringify(dat["data"]["segments"][0]["stats"]["level"]["value"]);
+            var rankSiralama = JSON.stringify(dat["data"]["segments"][0]["stats"]["rankScore"]["rank"]);
             const embed = {
                 "color": 15158332,
                 "author": {
@@ -38,14 +40,22 @@ exports.run = function(client,message,args) {
                     "value": level
                   },
                   {
+                    "name": "Kill",
+                    "value": kills
+                  },
+                  {
                     "name": "Rank Puanı",
                     "value": score
+                  },
+                  {
+                    "name": "Rank Sıralaması",
+                    "value": rankSiralama
                   }
                 ]
               };
               message.channel.send({ embed });
-              var ranks = ['643363694012792832','643363648269582377','643363555445571584','643363073884684289','643363035372847115','643362860885606410'];
-            for(var i = 0;i<6;i++) {
+              var ranks = ['660530174030250091','661247531690491904','660852933059149824','660848737215840297'];
+            for(var i = 0;i<4;i++) {
                if(message.member.roles.has(ranks[i])) {
                    message.member.removeRole(ranks[i]);
                }
@@ -53,23 +63,17 @@ exports.run = function(client,message,args) {
             setTimeout( () => {
               switch(true)
               {
-                case score < 1200:
-                  message.member.addRole('643363694012792832');
+                case rankSiralama < 100:
+                  message.member.addRole('660530174030250091');
                   break;
-                case score < 2800:
-                  message.member.addRole('643363648269582377');
-                  break;
-                case score < 4800:
-                  message.member.addRole('643363555445571584');
-                  break;
-                case score < 7200:
-                  message.member.addRole('643363073884684289');
+                case rankSiralama < 500:
+                  message.member.addRole('661247531690491904');
                   break;
                 case score < 10000:
-                  message.member.addRole('643363035372847115');
+                  message.member.addRole('660852933059149824');
                   break;
                 case score >= 10000:
-                  message.member.addRole('643362860885606410');
+                  message.member.addRole('660848737215840297');
                   break;
               }
             }, 500);
