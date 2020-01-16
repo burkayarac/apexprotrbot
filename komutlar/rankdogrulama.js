@@ -64,10 +64,10 @@ exports.run = function(client,message,args) {
               switch(true)
               {
                 case rankSiralama > 0 && rankSiralama < 100:
-                  message.member.addRole('660530174030250091');
+                  message.member.addRole('661247531690491904');
                   break;
                 case rankSiralama > 100 && rankSiralama < 500:
-                  message.member.addRole('661247531690491904');
+                  message.member.addRole('660530174030250091');
                   break;
                 case score < 10000:
                   message.member.addRole('660852933059149824');
