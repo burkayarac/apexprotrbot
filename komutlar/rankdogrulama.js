@@ -20,6 +20,11 @@ exports.run = function(client,message,args) {
         // The whole response has been received. Print out the result.
         resp.on('end', () => {
             var dat = JSON.parse(data);
+            if(dat.hasOwnProperty('errors'))
+            {
+                message.channel.send('```Böyle bir oyuncu bulunamadı.İsim değiştirdiyseniz daha sonra tekrar deneyiniz.```');
+            } else {
+                
             var name = JSON.stringify(dat["data"]["platformInfo"]["platformUserId"]);
             var score = JSON.stringify(dat["data"]["segments"][0]["stats"]["rankScore"]["value"]);
             var kills = JSON.stringify(dat["data"]["segments"][0]["stats"]["kills"]["value"]);
@@ -77,6 +82,7 @@ exports.run = function(client,message,args) {
                   break;
               }
             }, 500);
+            }
         });
 
     }).on("error", (err) => {
